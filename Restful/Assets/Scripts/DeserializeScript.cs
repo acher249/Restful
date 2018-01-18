@@ -50,6 +50,9 @@ public class Response
 
     [JsonProperty("parents")]
     public List<Parent> Parents { get; set; } // Ties to parent below..
+
+    [JsonProperty("buttons")]
+    public List<SomeButton> Buttons { get; set; }
 }
 
 
@@ -76,7 +79,29 @@ public class Parent //created this to tie back to Parent List above
     public bool IsRoot { get; set; }
 }
 
+public class SomeButton
+{
+    [JsonProperty("name")]
+    public string Name { get; set; }
 
+    [JsonProperty("image")]
+    public string Image { get; set; }
+
+    [JsonProperty("description")]
+    public string Description { get; set; }
+
+    [JsonConstructor]
+    public SomeButton()
+    {
+    }
+
+    public SomeButton(string name, string image, string desc)
+    {
+        Name = name;
+        Image = image;
+        Description = desc;
+    }
+}
 
 
 
@@ -92,7 +117,7 @@ public class DeserializeScript : MonoBehaviour
     // Use this for initialization
     void Start () {
 
-        var json = File.ReadAllText(@"C:\Users\adam.chernick\desktop\googdrive.json");
+        var json = File.ReadAllText(@"C:\Users\adam.chernick\Documents\GitHub\Restful\Restful\Assets\Scripts\Json\googdrive.json");
         if (string.IsNullOrEmpty(json)) return; // if json is empty or null, it failed reading it, it could fail because file was open/locked by another process
 
         var result = JsonConvert.DeserializeObject<Response>(json); //Dersializes the Json.. then stores it in variable result
