@@ -126,25 +126,5 @@ public class DeserializeScript : MonoBehaviour
         {
             textBoxDateTime.text = result.ModifiedDate.ToString(); // convert datetime object to string, text object expects a string type
         }
-
-        //var parent = result.Parents; // counting the list of parent objects..
-        //int parentCount = parent.Count;
-
-        //Debug.Log("Parent Count is" +  parentCount);
-        
-
-        if (result.Parents[0].IsRoot == true) //need to dive into result.parents.. then in the array of parents get the first object in the array (which is the whole dictionary there is only one object in the array) then find IsRoot...
-        {
-            image1.gameObject.SetActive(true);
-        }
-        else if (result.Parents[0].IsRoot == false)   //if a boolean is true or false turn on certain objects.. may not need this in the app.
-        {
-            image2.gameObject.SetActive(true);
-        }
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }
