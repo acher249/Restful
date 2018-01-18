@@ -1,0 +1,113 @@
+{
+    "kind": "drive#file",
+    "id": "0B12rTrek_QdEcGFld2hkU0ZyZmM",
+    "etag": "\"G9mQazc6pdRCuGfUPB_oyY074Ug/MTUwOTk5NzI5NDA0Nw\"",
+    "selfLink": "https://www.googleapis.com/drive/v2/files/0B12rTrek_QdEcGFld2hkU0ZyZmM",
+    "webViewLink": "https://54885bf32444521969916f9ba8bc38d8f0bdc03d.googledrive.com/host/0B12rTrek_QdEcGFld2hkU0ZyZmM/",
+    "alternateLink": "https://drive.google.com/drive/folders/0B12rTrek_QdEcGFld2hkU0ZyZmM",
+    "embedLink": "https://drive.google.com/embeddedfolderview?id=0B12rTrek_QdEcGFld2hkU0ZyZmM",
+    "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.google-apps.folder+shared",
+    "title": "360 Photos for URL Link",
+    "mimeType": "application/vnd.google-apps.folder",
+    "labels": {
+        "starred": false,
+        "hidden": false,
+        "trashed": false,
+        "restricted": false,
+        "viewed": true
+    },
+    "createdDate": "2017-10-24T20:47:08.208Z",
+    "modifiedDate": "2017-11-06T19:41:34.047Z",
+    "modifiedByMeDate": "2017-11-06T19:41:34.047Z",
+    "lastViewedByMeDate": "2017-11-06T19:49:29.723Z",
+    "markedViewedByMeDate": "1970-01-01T00:00:00.000Z",
+    "version": "23",
+    "parents": [
+        {
+            "kind": "drive#parentReference",
+            "id": "0AF2rTrek_QdEUk9PVA",
+            "selfLink": "https://www.googleapis.com/drive/v2/files/0B12rTrek_QdEcGFld2hkU0ZyZmM/parents/0AF2rTrek_QdEUk9PVA",
+            "parentLink": "https://www.googleapis.com/drive/v2/files/0AF2rTrek_QdEUk9PVA",
+            "isRoot": true
+        },
+		{
+            "kind": "drive#parentReference",
+            "id": "0AF2rTrek_QdEUk9PVA",
+            "selfLink": "https://www.googleapis.com/drive/v2/files/0B12rTrek_QdEcGFld2hkU0ZyZmM/parents/0AF2rTrek_QdEUk9PVA",
+            "parentLink": "https://www.googleapis.com/drive/v2/files/0AF2rTrek_QdEUk9PVA",
+            "isRoot": true
+        },
+		{
+            "kind": "drive#parentReference",
+            "id": "0AF2rTrek_QdEUk9PVA",
+            "selfLink": "https://www.googleapis.com/drive/v2/files/0B12rTrek_QdEcGFld2hkU0ZyZmM/parents/0AF2rTrek_QdEUk9PVA",
+            "parentLink": "https://www.googleapis.com/drive/v2/files/0AF2rTrek_QdEUk9PVA",
+            "isRoot": true
+        },
+		{
+            "kind": "drive#parentReference",
+            "id": "0AF2rTrek_QdEUk9PVA",
+            "selfLink": "https://www.googleapis.com/drive/v2/files/0B12rTrek_QdEcGFld2hkU0ZyZmM/parents/0AF2rTrek_QdEUk9PVA",
+            "parentLink": "https://www.googleapis.com/drive/v2/files/0AF2rTrek_QdEUk9PVA",
+            "isRoot": true
+        }
+    ],
+    "userPermission": {
+        "kind": "drive#permission",
+        "etag": "\"G9mQazc6pdRCuGfUPB_oyY074Ug/maXyyhpUS6dGdgWsCYopZnpyOw8\"",
+        "id": "me",
+        "selfLink": "https://www.googleapis.com/drive/v2/files/0B12rTrek_QdEcGFld2hkU0ZyZmM/permissions/me",
+        "role": "owner",
+        "type": "user"
+    },
+    "quotaBytesUsed": "0",
+    "ownerNames": [
+        "Adam Chernick"
+    ],
+    "owners": [
+        {
+            "kind": "drive#user",
+            "displayName": "Adam Chernick",
+            "picture": {
+                "url": "https://lh4.googleusercontent.com/-DZuH6voK7x4/AAAAAAAAAAI/AAAAAAAAASs/dbhFt1fUx8c/s64/photo.jpg"
+            },
+            "isAuthenticatedUser": true,
+            "permissionId": "17242035759540617480",
+            "emailAddress": "jchernick2010@gmail.com"
+        },
+		{
+            "kind": "drive#user",
+            "displayName": "Adam Chernick",
+            "picture": {
+                "url": "https://lh4.googleusercontent.com/-DZuH6voK7x4/AAAAAAAAAAI/AAAAAAAAASs/dbhFt1fUx8c/s64/photo.jpg"
+            },
+            "isAuthenticatedUser": true,
+            "permissionId": "17242035759540617480",
+            "emailAddress": "jchernick2010@gmail.com"
+        }
+    ],
+    "lastModifyingUserName": "Adam Chernick",
+    "lastModifyingUser": {
+        "kind": "drive#user",
+        "displayName": "Adam Chernick",
+        "picture": {
+            "url": "https://lh4.googleusercontent.com/-DZuH6voK7x4/AAAAAAAAAAI/AAAAAAAAASs/dbhFt1fUx8c/s64/photo.jpg"
+        },
+        "isAuthenticatedUser": true,
+        "permissionId": "17242035759540617480",
+        "emailAddress": "jchernick2010@gmail.com"
+    },
+    "capabilities": {
+        "canCopy": false,
+        "canEdit": true
+    },
+    "editable": true,
+    "copyable": false,
+    "writersCanShare": true,
+    "shared": true,
+    "explicitlyTrashed": false,
+    "appDataContents": false,
+    "spaces": [
+        "drive"
+    ]
+}
