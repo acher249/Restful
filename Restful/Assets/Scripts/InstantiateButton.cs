@@ -32,8 +32,8 @@ public class InstantiateButton : MonoBehaviour {
         var vlg = LayoutGroupParent.GetComponent<VerticalLayoutGroup>();
         var vlgSpacing = vlg.spacing;
 
-        rt.anchorMin = new Vector2(0.5f,1);
-        rt.anchorMax = new Vector2(0.5f, 1);
+        rt.anchorMin = new Vector2(0.5f,.5f);
+        rt.anchorMax = new Vector2(0.5f,.5f);
 
 
         var layoutGroupHeight = (buttonHeight * buttonCount) + (vlgSpacing * buttonCount) - 20;
