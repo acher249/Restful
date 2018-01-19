@@ -14,12 +14,34 @@ public class InstantiateButton : MonoBehaviour {
 
     void Start()
     {
-        int buttonHeight = 90;
         
         string json = File.ReadAllText(@"C:\Users\adam.chernick\Documents\GitHub\Restful\Restful\Assets\Scripts\Json\googdrive.json"); //need this to port over the json to deserialize
         Response result = JsonConvert.DeserializeObject<Response>(json);
 
         List<SomeButton> buttons = result.Buttons;
+
+            
+        RectTransform buttonRectTranform = Button.GetComponent<RectTransform>();
+        var buttonHeight = buttonRectTranform.rect.height;
+
+        Debug.Log("Button height is" + buttonHeight);
+
+        int buttonCount = buttons.Count;
+
+        RectTransform rt = LayoutGroupParent.GetComponent<RectTransform>();
+        var vlg = LayoutGroupParent.GetComponent<VerticalLayoutGroup>();
+        var vlgSpacing = vlg.spacing;
+
+        rt.anchorMin = new Vector2(0.5f,1);
+        rt.anchorMax = new Vector2(0.5f, 1);
+
+
+        var layoutGroupHeight = (buttonHeight * buttonCount) + (vlgSpacing * buttonCount) - 20;
+        Debug.Log("Layout Group Height Needs To Be " + layoutGroupHeight + " Pixels high");
+
+
+        rt.sizeDelta = new Vector2(300, layoutGroupHeight); //change height of panel based on how many buttons are in the list
+
         foreach (SomeButton btn in buttons)
         {
             Sprite sprite = null;
@@ -53,7 +75,13 @@ public class InstantiateButton : MonoBehaviour {
             if (buttonImage == null) continue;
 
             buttonImage.sprite = sprite;
+
+
+            //var t = Button.transform as RectTransform;
+            //t.rect.height = buttons.Count*
+
             
+
         }
 
         //use button height multiplied by the parentCount (number of buttons) plus some numer (20 pixels?) to get total height that 
