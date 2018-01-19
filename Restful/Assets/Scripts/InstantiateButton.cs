@@ -20,11 +20,8 @@ public class InstantiateButton : MonoBehaviour {
 
         List<SomeButton> buttons = result.Buttons;
 
-            
         RectTransform buttonRectTranform = Button.GetComponent<RectTransform>();
         var buttonHeight = buttonRectTranform.rect.height;
-
-        Debug.Log("Button height is" + buttonHeight);
 
         int buttonCount = buttons.Count;
 
@@ -32,8 +29,10 @@ public class InstantiateButton : MonoBehaviour {
         var vlg = LayoutGroupParent.GetComponent<VerticalLayoutGroup>();
         var vlgSpacing = vlg.spacing;
 
-        rt.anchorMin = new Vector2(0.5f,.5f);
-        rt.anchorMax = new Vector2(0.5f,.5f);
+        // (Adam) This sets the anchors for the LayoutGroup. so that when it grows it grows down, to allocate 
+        //for addition or subtraction of buttons.
+        rt.anchorMin = new Vector2(0.5f,0);
+        rt.anchorMax = new Vector2(0.5f,0);
 
 
         var layoutGroupHeight = (buttonHeight * buttonCount) + (vlgSpacing * buttonCount) - 20;
