@@ -171,7 +171,7 @@ public class DeserializeScript : MonoBehaviour
             foreach (SomeBucket buck in proj.Buckets)
             {
                 //(Adam) Must instantiate the ProjectPanelPrefab itself before you can instantiate buttons onto it..
-                GameObject buckPanelPrefab = Instantiate(ProjectPanelPrefab, transform.position, transform.rotation);
+                GameObject buckPanelPrefab = Instantiate(BucketPanelPrefab, transform.position, transform.rotation);
                 buckPanelPrefab.transform.SetParent(BucketPanelsParent.gameObject.transform);
 
                 

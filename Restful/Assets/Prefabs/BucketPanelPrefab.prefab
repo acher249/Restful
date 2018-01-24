@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 222984577982901750}
   - component: {fileID: 114163456783023262}
   m_Layer: 5
-  m_Name: BucketPanelPrefab 1
+  m_Name: BucketPanelPrefab
   m_TagString: ProjectPanelPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114800244489498528}
   - component: {fileID: 222522905551063170}
   m_Layer: 5
-  m_Name: Layout Group (height grows w/ more buttons)
+  m_Name: Layout Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
