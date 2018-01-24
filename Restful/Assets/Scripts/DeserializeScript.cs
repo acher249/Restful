@@ -72,9 +72,12 @@ public class DeserializeScript : MonoBehaviour
 
     // Starting Functions
 
-    public Transform buttonPrefab;
+    public GameObject buttonPrefab;
     public GameObject canvas;
+    public GameObject ProjectPanelsParent;
+    public GameObject BucketPanelsParent;
     public GameObject ProjectPanelPrefab;
+    public GameObject BucketPanelPrefab;
     public GameObject AllProjectsPanel; // Will always be there.
 
 
@@ -115,7 +118,6 @@ public class DeserializeScript : MonoBehaviour
 
         //******Projects******//
         foreach (SomeProject proj in projects) 
-
         {
             Sprite sprite = null;
             if (!string.IsNullOrEmpty(proj.ThumbnailImage))
@@ -127,13 +129,13 @@ public class DeserializeScript : MonoBehaviour
                 sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(.5f, .5f));
             }
 
-            Transform projectButton = Instantiate(buttonPrefab, transform.position, transform.rotation);
+            GameObject projectButton = Instantiate(buttonPrefab, transform.position, transform.rotation);
             projectButton.transform.SetParent(AllProjectsPanel.gameObject.transform);
 
             // (Konrad) GetComponent not GetComponents, notice "s" or lack of it at the end
             // This call will return Text object inside of that prefab, since there is only one
             // We will get the right one. In case there were more than one we would get first encountered.
-            Text projectButtonText = projectButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "projectName");
+            Text projectButtonText = projectButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "buttonText");
             if (projectButtonText != null) projectButtonText.text = proj.ProjectName;
 
             if (sprite == null)
@@ -148,26 +150,41 @@ public class DeserializeScript : MonoBehaviour
             // FirstOrDefault() will take first item that matches the rule defined inside (). If no object in the array
             // matches the rule, the default returned is null. 
             // x is the object in the array. basically It is finding the first object in thhe array with the name buttonImage
-            Image projectButtonImage = projectButton.GetComponentsInChildren<Image>().FirstOrDefault(x => x.name == "thumbnailImage");
+            Image projectButtonImage = projectButton.GetComponentsInChildren<Image>().FirstOrDefault(x => x.name == "buttonImage");
             if (projectButtonImage == null)
             {
-                continue; //This is where it is jumping out *******
+                continue; 
             }
 
             projectButtonImage.sprite = sprite;
+
+            //(Adam) Must instantiate the ProjectPanelPrefab itself before you can instantiate buttons onto it..
+            GameObject projPanelPrefab = Instantiate(ProjectPanelPrefab, transform.position, transform.rotation);
+            projPanelPrefab.transform.SetParent(ProjectPanelsParent.gameObject.transform);
+
+            //(Adam) Get the Layout group Child of the Project Panel. In order to instantiate the buttons on..
+            var projPanelLayoutGroup = projPanelPrefab.gameObject.transform.GetChild(0);
+            //projPanelLayoutGroup.transform.position = Vector3.zero;
+
 
             //**** Buckets*****//
             foreach (SomeBucket buck in proj.Buckets)
             {
                 //(Adam) Must instantiate the ProjectPanelPrefab itself before you can instantiate buttons onto it..
-                GameObject projPanelPrefab = Instantiate(ProjectPanelPrefab, transform.position, transform.rotation);
-                projPanelPrefab.transform.SetParent(canvas.gameObject.transform); 
+                GameObject buckPanelPrefab = Instantiate(ProjectPanelPrefab, transform.position, transform.rotation);
+                buckPanelPrefab.transform.SetParent(BucketPanelsParent.gameObject.transform);
 
-                //Then instantiate button onto it..
-                Transform bucketButton = Instantiate(buttonPrefab, transform.position, transform.rotation);
-                bucketButton.transform.SetParent(ProjectPanelPrefab.gameObject.transform);
+                
 
-                Text bucketButtonText = bucketButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "bucketName");
+                //(Adam) Get the Layout group Child of the Project Panel. In order to instantiate the buttons on..
+                var buckPanelLayoutGroup = buckPanelPrefab.gameObject.transform.GetChild(0);
+                buckPanelLayoutGroup.transform.position = Vector3.zero;
+
+                //(Adam)Then instantiate button onto it..
+                GameObject bucketButton = Instantiate(buttonPrefab, transform.position, transform.rotation);
+                bucketButton.transform.SetParent(projPanelLayoutGroup.gameObject.transform);
+
+                Text bucketButtonText = bucketButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "buttonText");
                 if (bucketButtonText != null) bucketButtonText.text = buck.BucketName;
 
                 if (sprite == null)
