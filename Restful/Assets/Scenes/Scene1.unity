@@ -711,9 +711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1e7d3ea73f2bf45898501d1eec53b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 1497606218269532, guid: bc2a23c15e11ab4469d24329b2fed5be,
+  ButtonPrefab: {fileID: 1497606218269532, guid: bc2a23c15e11ab4469d24329b2fed5be,
     type: 2}
-  canvas: {fileID: 2145079609}
+  Canvas: {fileID: 2145079609}
   ProjectPanelsParent: {fileID: 386148502}
   BucketPanelsParent: {fileID: 1884973780765670, guid: c77b4ac81791d7c40a4f5fe462ba216f,
     type: 2}

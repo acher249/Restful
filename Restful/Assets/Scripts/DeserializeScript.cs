@@ -72,8 +72,8 @@ public class DeserializeScript : MonoBehaviour
 
     // Starting Functions
 
-    public GameObject buttonPrefab;
-    public GameObject canvas;
+    public GameObject ButtonPrefab;
+    public GameObject Canvas;
     public GameObject ProjectPanelsParent;
     public GameObject BucketPanelsParent;
     public GameObject ProjectPanelPrefab;
@@ -89,7 +89,7 @@ public class DeserializeScript : MonoBehaviour
 
         List<SomeProject> projects = result.Projects;
 
-        RectTransform buttonRectTranform = buttonPrefab.GetComponent<RectTransform>();
+        RectTransform buttonRectTranform = ButtonPrefab.GetComponent<RectTransform>();
         var buttonHeight = buttonRectTranform.rect.height;
 
         int buttonCount = projects.Count;
@@ -111,6 +111,22 @@ public class DeserializeScript : MonoBehaviour
         rt.sizeDelta = new Vector2(300, layoutGroupHeight); //change height of panel based on how many buttons are in the list
 
 
+        //float buckLeft = 0;
+        //float buckRight = 0;
+        //float buckTop = 0;
+        //float buckBottom = 0;
+
+        //RectTransform buckRT = ProjectPanelPrefab.GetComponent<RectTransform>();
+        //var buckLeft = buckRT.rect.xMin;
+        //var buckRight = buckRT.rect.xMax;
+        //var buckTop = buckRT.rect.yMin;
+        //var buckBottom = buckRT.rect.yMax;
+
+        //Debug.Log("Left" + buckLeft);
+        //Debug.Log("Right" + buckRight);
+        //Debug.Log("Top" + buckTop);
+        //Debug.Log("Bottom" + buckBottom);
+
         // (Adam) Need new loop for buck in buckets .. will instantiante and parent to different 
         // GameObject. Need to add click event with script to turn off GameObject and on 
         // others. If click project1 button (first in array) turn off AllProjectsPanel and
@@ -129,7 +145,7 @@ public class DeserializeScript : MonoBehaviour
                 sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(.5f, .5f));
             }
 
-            GameObject projectButton = Instantiate(buttonPrefab, transform.position, transform.rotation);
+            GameObject projectButton = Instantiate(ButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             projectButton.transform.SetParent(AllProjectsPanel.gameObject.transform);
 
             // (Konrad) GetComponent not GetComponents, notice "s" or lack of it at the end
@@ -159,30 +175,35 @@ public class DeserializeScript : MonoBehaviour
             projectButtonImage.sprite = sprite;
 
             //(Adam) Must instantiate the ProjectPanelPrefab itself before you can instantiate buttons onto it..
-            GameObject projPanelPrefab = Instantiate(ProjectPanelPrefab, transform.position, transform.rotation);
+            GameObject projPanelPrefab = Instantiate(ProjectPanelPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             projPanelPrefab.transform.SetParent(ProjectPanelsParent.gameObject.transform);
 
-            //(Adam) Get the Layout group Child of the Project Panel. In order to instantiate the buttons on..
-            var projPanelLayoutGroup = projPanelPrefab.gameObject.transform.GetChild(0);
-            //projPanelLayoutGroup.transform.position = Vector3.zero;
+            // (Konrad) Reset the transform offsets to 0.
+            projPanelPrefab.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0); // left, bottom
+            projPanelPrefab.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0); // right, top
+
+            Transform bpp = null;
+            foreach (Transform t in projPanelPrefab.transform)
+            {
+                if (t.name == "BucketPanelsParent") bpp = t;
+            }
+            if (bpp == null) continue;
+
+
+            var buckLayoutGroup = projPanelPrefab.gameObject.transform.GetChild(0);
 
 
             //**** Buckets*****//
             foreach (SomeBucket buck in proj.Buckets)
             {
-                //(Adam) Must instantiate the ProjectPanelPrefab itself before you can instantiate buttons onto it..
-                GameObject buckPanelPrefab = Instantiate(BucketPanelPrefab, transform.position, transform.rotation);
-                buckPanelPrefab.transform.SetParent(BucketPanelsParent.gameObject.transform);
 
-                
-
-                //(Adam) Get the Layout group Child of the Project Panel. In order to instantiate the buttons on..
-                var buckPanelLayoutGroup = buckPanelPrefab.gameObject.transform.GetChild(0);
-                buckPanelLayoutGroup.transform.position = Vector3.zero;
+                GameObject buckPanelPrefab = Instantiate(BucketPanelPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                buckPanelPrefab.transform.SetParent(bpp);
 
                 //(Adam)Then instantiate button onto it..
-                GameObject bucketButton = Instantiate(buttonPrefab, transform.position, transform.rotation);
-                bucketButton.transform.SetParent(projPanelLayoutGroup.gameObject.transform);
+                GameObject bucketButton = Instantiate(ButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                //bucketButton.transform.SetParent(projPanelLayoutGroup.gameObject.transform);
+                bucketButton.transform.SetParent(buckLayoutGroup.gameObject.transform);
 
                 Text bucketButtonText = bucketButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "buttonText");
                 if (bucketButtonText != null) bucketButtonText.text = buck.BucketName;
@@ -192,10 +213,10 @@ public class DeserializeScript : MonoBehaviour
                     continue;
                 }
 
-                foreach (SomeBucketImage buckImg in buck.BucketImages) // buck is the object that we are currently on
-                {
+                //foreach (SomeBucketImage buckImg in buck.BucketImages) // buck is the object that we are currently on
+                //{
 
-                }
+                //}
             }
         }
     }
