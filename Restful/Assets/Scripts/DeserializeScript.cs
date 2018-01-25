@@ -81,6 +81,9 @@ public class DeserializeScript : MonoBehaviour
     public GameObject AllProjectsPanelLayoutGroup; // Will always be there.
 
 
+    delegate void MyDelegate();
+    MyDelegate myDelegate;
+
     void Start()
     {
 
@@ -193,8 +196,8 @@ public class DeserializeScript : MonoBehaviour
 
             foreach (SomeBucket butt in proj.Buckets) // make click buttons do things.
             {
-
-                var btn = projectButton.GetComponent<Button>(); //turn on first project panel and turn off AllProjectsPanel.
+     
+                //var btn = projectButton.GetComponent<Button>(); //turn on first project panel and turn off AllProjectsPanel.
                 //Utility at bottom         ***********NEED EVENT SYSTEM*************
                 //btn.onClick.AddListener(TaskOnClick);
             }
@@ -250,12 +253,4 @@ public class DeserializeScript : MonoBehaviour
             }
         }
     }
-
-    void TaskOnClick()
-    {
-
-
-        Debug.Log("You have clicked the button!");
-    }
-
 }
