@@ -165,9 +165,6 @@ public class DeserializeScript : MonoBehaviour
             }
             if (buckPanelParent == null) continue;
 
-            var btn = projectButton.GetComponent<Button>(); //turn on first project panel and turn off AllProjectsPanel.
-            btn.onClick.AddListener(TaskOnClick); //Utility at bottom.*************************************************************
-
             var projPanelLayoutGroup = projPanelPrefab.gameObject.transform.GetChild(0);
 
             //(Adam) Turn the panels off. But still exist to be turned on later.
@@ -176,8 +173,8 @@ public class DeserializeScript : MonoBehaviour
 
             //********Anchoring and sizing the LayoutGroup*********//
             RectTransform ProjPanelLayoutGroupRT = projPanelLayoutGroup.GetComponent<RectTransform>();
-            var projPanelVLG = projPanelPrefab.GetComponent<VerticalLayoutGroup>();
-            var projPanelVLGSpacing = vlg.spacing;
+            var projPanelVLG = ProjPanelLayoutGroupRT.GetComponent<VerticalLayoutGroup>();
+            var projPanelVLGSpacing = projPanelVLG.spacing;
 
             int buckButtonCount = proj.Buckets.Count;
 
@@ -194,12 +191,23 @@ public class DeserializeScript : MonoBehaviour
             projPanelPrefab.GetComponent<RectTransform>().offsetMin = new Vector2(0, 20); // left, bottom
             projPanelPrefab.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0); // right, top
 
+            foreach (SomeBucket butt in proj.Buckets) // make click buttons do things.
+            {
+
+                var btn = projectButton.GetComponent<Button>(); //turn on first project panel and turn off AllProjectsPanel.
+                btn.onClick.AddListener(TaskOnClick); //Utility at bottom
+
+            }
+            
+
             //**** Buckets*****//
             foreach (SomeBucket buck in proj.Buckets)
             {
 
                 GameObject buckPanelPrefab = Instantiate(BucketPanelPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                 buckPanelPrefab.transform.SetParent(buckPanelParent);
+
+                buckPanelPrefab.SetActive(false);
 
                 //(Adam)Then instantiate button onto it..
                 GameObject bucketButton = Instantiate(ButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
@@ -209,15 +217,34 @@ public class DeserializeScript : MonoBehaviour
                 Text bucketButtonText = bucketButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "buttonText");
                 if (bucketButtonText != null) bucketButtonText.text = buck.BucketName;
 
+                buckPanelPrefab.GetComponent<RectTransform>().offsetMin = new Vector2(0, 20); // left, bottom
+                buckPanelPrefab.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0); // right, top
+
                 if (sprite == null)
                 {
                     continue;
                 }
 
-                //foreach (SomeBucketImage buckImg in buck.BucketImages) // buck is the object that we are currently on
-                //{
+                int buckImageButtonCount = buck.BucketImages.Count;
 
-                //}
+                foreach (SomeBucketImage buckImg in buck.BucketImages) // buck is the object that we are currently on
+                {
+                    var buckPanelLayoutGroup = buckPanelPrefab.gameObject.transform.GetChild(0);
+
+                    RectTransform buckPanelLayoutGroupRT = buckPanelLayoutGroup.GetComponent<RectTransform>();
+                    var buckPanelVLG = buckPanelLayoutGroupRT.GetComponent<VerticalLayoutGroup>();
+                    var buckPanelVLGSpacing = buckPanelVLG.spacing;
+
+                    var buckPanelLayoutGroupHeight = (buttonHeight * buckImageButtonCount) + (buckPanelVLGSpacing * buckImageButtonCount) - 20;
+
+                    Debug.Log("Bucket Panel Height = " + buckPanelLayoutGroupHeight);
+
+                    // (Adam)Resize Project Panel Layout Group
+                    buckPanelLayoutGroupRT.sizeDelta = new Vector2(300, buckPanelLayoutGroupHeight);
+
+                    GameObject bucketImageButton = Instantiate(ButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                    bucketImageButton.transform.SetParent(buckPanelLayoutGroup.gameObject.transform);
+                }
             }
         }
     }
