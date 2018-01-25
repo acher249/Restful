@@ -259,7 +259,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 608747981}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -31.153748, z: 0}
+  m_LocalPosition: {x: 0, y: -31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1526456261}
@@ -268,7 +268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -246.15373}
+  m_AnchoredPosition: {x: 0, y: -246}
   m_SizeDelta: {x: 300, y: 520}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &608747985
@@ -721,7 +721,9 @@ MonoBehaviour:
     type: 2}
   BucketPanelPrefab: {fileID: 1269154868798322, guid: a969067d1c5eac54894351a4644c1618,
     type: 2}
-  AllProjectsPanel: {fileID: 608747981}
+  AllProjectsPanelLayoutGroup: {fileID: 608747981}
+  ProjectPanelLayoutGroup: {fileID: 1519582159235276, guid: c77b4ac81791d7c40a4f5fe462ba216f,
+    type: 2}
 --- !u!1001 &2023160753
 Prefab:
   m_ObjectHideFlags: 0
