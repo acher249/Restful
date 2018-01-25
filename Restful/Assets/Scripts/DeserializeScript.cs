@@ -195,8 +195,8 @@ public class DeserializeScript : MonoBehaviour
             {
 
                 var btn = projectButton.GetComponent<Button>(); //turn on first project panel and turn off AllProjectsPanel.
-                btn.onClick.AddListener(TaskOnClick); //Utility at bottom
-
+                //Utility at bottom         ***********NEED EVENT SYSTEM*************
+                //btn.onClick.AddListener(TaskOnClick);
             }
             
 
@@ -211,13 +211,12 @@ public class DeserializeScript : MonoBehaviour
 
                 //(Adam)Then instantiate button onto it..
                 GameObject bucketButton = Instantiate(ButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-                //bucketButton.transform.SetParent(projPanelLayoutGroup.gameObject.transform);
                 bucketButton.transform.SetParent(projPanelLayoutGroup.gameObject.transform);
 
                 Text bucketButtonText = bucketButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "buttonText");
                 if (bucketButtonText != null) bucketButtonText.text = buck.BucketName;
 
-                buckPanelPrefab.GetComponent<RectTransform>().offsetMin = new Vector2(0, 20); // left, bottom
+                buckPanelPrefab.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0); // left, bottom
                 buckPanelPrefab.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0); // right, top
 
                 if (sprite == null)
@@ -244,6 +243,9 @@ public class DeserializeScript : MonoBehaviour
 
                     GameObject bucketImageButton = Instantiate(ButtonPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                     bucketImageButton.transform.SetParent(buckPanelLayoutGroup.gameObject.transform);
+
+                    Text bucketImageButtonText = bucketImageButton.GetComponentsInChildren<Text>().FirstOrDefault(x => x.name == "buttonText");
+                    if (bucketImageButtonText != null) bucketImageButtonText.text = buckImg.BucketImageName;
                 }
             }
         }
@@ -251,6 +253,8 @@ public class DeserializeScript : MonoBehaviour
 
     void TaskOnClick()
     {
+
+
         Debug.Log("You have clicked the button!");
     }
 
